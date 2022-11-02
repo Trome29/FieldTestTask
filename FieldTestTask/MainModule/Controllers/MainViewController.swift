@@ -25,12 +25,15 @@ final class MainViewController: UITableViewController {
 extension MainViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        Resources.nameFields.allCases.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "test"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainTableViewCell else { return UITableViewCell()}
+        
+        let nameField = Resources.nameFields.allCases[indexPath.row].rawValue
+        
+        cell.textLabel?.text = nameField
         return cell
     }
 }
